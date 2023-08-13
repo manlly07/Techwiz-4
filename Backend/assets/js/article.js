@@ -1,4 +1,5 @@
-const domain = 'http://api.techwarriors.click/'
+// const domain = 'http://api.techwarriors.click/'
+const domain = 'https://localhost:7288/'
 const routes = {
     GetAll: 'api/Article/GetList',
     post: 'api/Article/Insert',
@@ -99,9 +100,6 @@ const GetListArticle = (data) => {
                 </td>
                 <td>
                     ${validateDatetime(item.createDate)}
-                </td>
-                <td>
-                    ${item.modifeDate}
                 </td>
                 <td>
                     <button type="button" class="btn btn-warning"
