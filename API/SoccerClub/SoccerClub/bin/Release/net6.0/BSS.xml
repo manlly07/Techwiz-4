@@ -1,0 +1,3379 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BSS</name>
+    </assembly>
+    <members>
+        <member name="M:BSS.AJAXHelper.RenderControl``1(System.String,``0,System.String@)">
+            <summary>
+            RenderControl sang dạng html (text)
+            </summary>
+            <param name="path">Đường dẫn URL tới UserControl cần render</param>
+            <param name="properties">Các thuộc tính cho UserControl</param>
+            <param name="html">html content sau khi render UserControl</param>
+            <returns>Trả về xâu khác rỗng khi có lỗi, mô tả lỗi xảy ra</returns>
+        </member>
+        <member name="M:BSS.AJAXHelper.RenderControl``1(System.String,``0,System.String@,System.Boolean)">
+            <summary>
+            RenderControl sang dạng html (text)
+            </summary>
+            <param name="path">Đường dẫn URL tới UserControl cần render</param>
+            <param name="properties">Các thuộc tính cho UserControl</param>
+            <param name="html">html content sau khi render UserControl</param>
+            <param name="removeDivTag">Có xóa DivTag hay không</param>
+            <returns>Trả về xâu khác rỗng khi có lỗi, mô tả lỗi xảy ra</returns>
+        </member>
+        <member name="T:BSS.FuncSelectIDByGUID">
+            <summary>
+            Cache từ GUID sang ID
+            </summary>
+        </member>
+        <member name="M:BSS.Cache.CleanCache(System.Int32)">
+            <summary>
+            Xóa Cache
+            </summary>
+            <param name="threshold">Ngưỡng xóa: Nếu threshold nhỏ hơn 1: Clear Dictionary; Ngược lại: xóa các cache có Hit nhỏ hơn hoặc bằng threshold</param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.ClickOnceAutoUpdater.CheckForUpdate(System.Boolean)">
+            <author>
+            Bkav Corp. - [BPTHT]
+            Project: [BSS]
+            Create Date : [2015-12-23]
+            Author      : [CuongHMb]
+            </author>
+            <summary>
+            Hàm check update
+            </summary>
+            <param name="userClick">Tham số người dùng click trên tool hay tự update</param>
+        </member>
+        <member name="T:BSS.Common">
+            <summary>
+            Các hàm dùng chung
+            </summary>
+        </member>
+        <member name="M:BSS.Common.GetSetting(System.String,System.String@)">
+            <summary> Trả về setting trong app.config hay web.config
+            </summary>
+            <param name="key">Key</param>
+            <param name="value"></param>
+            <returns>Giá trị của Key trong app.config hoặc web.config. Trả về rỗng nếu không có Key hoặc lỗi</returns>
+        </member>
+        <member name="M:BSS.Common.CopyObjectPropertyData``2(``0,``1,System.String)">
+            <summary>
+            Copy value of same properties from obj1 to obj2
+            </summary>
+            <typeparam name="T1"></typeparam>
+            <typeparam name="T2"></typeparam>
+            <param name="obj1"></param>
+            <param name="obj2"></param>
+            <param name="exceptProperties">Properties which are not copied</param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.Common.DoEx(System.Linq.Expressions.Expression{System.Func{System.Object,System.String}})">
+            <summary> <para>Hàm chạy 1 Expression (biểu thức/câu lệnh). Nếu Expression chạy có lỗi (return string khác rỗng) thì sẽ ghép nội dung của Expression vào trước lỗi.
+            Nội dung của Expression sẽ bao gồm tên hàm được gọi (câu lệnh) và các tham số của hàm, cùng giá trị của các tham số này.</para>
+            <para>Ví dụ: string msg = Common.DoEx(i => DBM.ExecStore("sp_InvoiceRelease_Insert", o).ToGeneralSystemErrorMessage());</para>
+            nếu có lỗi sẽ trả về: ERROR AT [BSS.DBM.ExecStore(sp_InvoiceRelease_Insert; o = { IP = 1.2.3.4, UserName = ABC }).BSS.Log.ToGeneralSystemErrorMessage()]. ERROR CONTENT: Có lỗi xảy ra. Xin vui lòng thử lại sau hoặc thông báo với quản trị (#Error: Connection string is null or empty)
+            <para>Ví dụ khác: lấy 20 ký tự đầu của expression khi có lỗi: string msg = Common.DoEx(s20 => DBM.ExecStore("sp_InvoiceRelease_UpdateStatus", new { IP }));</para>
+            <para>Lấy đễn vị trí của "IP" trong expression khi có lỗi: string msg = Common.DoEx(fIP => DBM.ExecStore("sp_InvoiceRelease_UpdateStatus", new { IP }));</para>
+            </summary>
+        </member>
+        <member name="M:BSS.Common.ShowErrorPopup(System.String,System.Web.UI.UserControl,System.Int32)">
+            <summary>
+            Đăng ký 1 script ở page hoặc UserControl để hiển thị Popup thông báo lỗi (gọi hàm javascript bkav_alert_error)
+            </summary>
+            <param name="msg">Nội dung trong Popup thông báo lỗi</param>
+            <param name="userControl">Là UserControl chứa PU thông báo lỗi</param>
+            <param name="width"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.Common.RegisterScript(System.String,System.Object,System.String)">
+            <summary>
+            Đăng ký 1 script ở page hoặc UserControl để chạy 1 đoạn code javascript
+            </summary>
+            <param name="script">Đoạn code javascript</param>
+            <param name="id">Id của script</param>
+            <param name="o">Là page hay UserControl</param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.Common.ObjectToFile``1(``0,System.String)">
+            <summary>
+            Serializes an object.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="fullPath"></param>
+        </member>
+        <member name="M:BSS.Common.FileToObject``1(System.String,``0@)">
+            <summary>
+            Deserializes an xml file into an object list
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="fullPath"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.Common.GetGGObject``1(``0,System.Int32,BSS.GGObject@)">
+            <summary>
+            returns string is error, GGObject is ok
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="parameters"></param>
+            <param name="objectType"></param>
+            <param name="ggObj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.ImageChecker.RegisterImageHeaderSignature(System.String,System.String)">
+            <summary>
+                <para> Registers a hexadecimal value used for a given image type </para>
+                <param name="imageType"> The type of image, example: "png" </param>
+                <param name="uniqueHeaderAsHex"> The type of image, example: "89504E470D0A1A0A" </param>
+            </summary>
+        </member>
+        <member name="M:BSS.Convertor.ObjectToString``1(System.Boolean,``0,System.String@)">
+            <summary>
+            Convert object to string. String trong định dạng XML hoặc Json
+            </summary>
+            <param name="isXML">true: string trả về trong định dạng XML; false: string trả về trong định dạng Json</param>
+            <param name="objectData"></param>
+            <param name="value"></param>
+            <returns>string khác rỗng là lỗi</returns>
+        </member>
+        <member name="M:BSS.Convertor.StringToObject``1(System.Boolean,System.String,``0@)">
+            <summary>
+            Convert string to object. String trong định dạng XML hoặc Json
+            </summary>
+            <param name="isXML">true: string trong định dạng XML; false: string trong định dạng Json</param>
+            <param name="stringData"></param>
+            <param name="obj"></param>
+            <returns>string khác rỗng là lỗi</returns>
+        </member>
+        <member name="M:BSS.Convertor.ObjectToBase64String(System.Object,System.String@)">
+            <summary>
+            Serialize và chuyển sang Base64 1 object bất kỳ (object cần có thuộc tính Serializable)
+            </summary>
+            <param name="obj">object cần chuyển sang Base64</param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.Convertor.Base64StringToObject(System.String,System.Object@)">
+            <summary>
+            Deserialize từ Base64 về object 
+            </summary>
+            <param name="base64">Chuỗi cần chuyển về object</param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.Convertor.ReveserString(System.String)">
+            <summary>
+            Đảo ngược thứ tự các chữ cái của string
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.Convertor.ToStringDDMMYYYY(System.DateTime,System.String)">
+            <summary>
+            Convert Datetime to string. Theo định dạng DD/MM/YYYY
+            </summary>
+            <param name="obj"></param>
+            <param name="defaultvalue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.Convertor.ToStringDDMMYYYY24H(System.DateTime,System.String)">
+            <summary>
+            Convert Datetime to string. Theo định dạng DD/MM/YYYY 23:59:59
+            </summary>
+            <param name="obj"></param>
+            <param name="defaultvalue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.Convertor.ToStringCustomFormat(System.DateTime,System.String,System.String)">
+            <summary>
+            Convert Datetime to string. Theo định dạng truyền vào. Ex: dd-MM-yyyy, d/M/yy ...
+            </summary>
+            <param name="obj"></param>
+            <param name="format"></param>
+            <param name="defaultvalue"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.Convertor.DataTableToList``1(System.Data.DataTable,System.Collections.Generic.List{``0}@)">
+            <summary>
+            Convert 1 DataTable to 1 list of objects
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="table"></param>
+            <param name="list"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.Convertor.RowToObject``1(System.Data.DataRow,``0@)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="row"></param>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.Convertor.ListToList``2(System.Collections.Generic.IList{``0},System.Collections.Generic.List{``1}@)">
+            <summary>
+            Copy các item ở list1 sang list2 (phần tử ở list2 có thể có ít property hơn phần tử ở list1, nhưng tên các property phải giống nhau) 
+            </summary>
+            <typeparam name="T1"></typeparam>
+            <typeparam name="T2"></typeparam>
+            <param name="list1"></param>
+            <param name="list2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.Convertor.StringRemoveMarkVietnamese(System.String,System.Int32)">
+            <summary>
+            Chuyển string từ tiếng việt có dấu thành không dấu
+            </summary>
+            <param name="input">The input.</param>
+            <param name="type">0 thì binh thuong, 1 tolower, 2 To upper </param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.DBM.#cctor">
+            <summary>
+            Constructor: khởi tạo ConnectionString default (theo key AppSettingsDBKey = "MSSQL") để sử dụng cho các hàm tĩnh. Các hàm tĩnh khi được gọi không cần truyền ConnectionString
+            </summary>
+        </member>
+        <member name="M:BSS.DBM.#ctor">
+            <summary>
+            Constructor: tạo SqlConnection cho object DBM với ConnectionString được truyền vào
+            </summary>
+        </member>
+        <member name="M:BSS.DBM.GetDbConnection(System.String)">
+            <summary>
+            Tạo DbConnection từ ConnectionString
+            Nếu ConnectionString startWith [MYSQL] thì là MySQL; nếu startWith [SQL] hoặc không có [] thì là SQL
+            Nếu startWith [MYSQL] hoặc [SQL] thì trim cụm này để lấy ConnectionString gốc
+            </summary>
+            <param name="ConnStr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.DBM.IsSql">
+            <summary>
+            Kiểm tra xem ConnectionString có phải là của SQL hay không.
+            Nếu ConnectionString startWith [MYSQL] thì là MySQL; nếu startWith [SQL] hoặc không có [] thì là SQL
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.DBM.#ctor(System.Data.SqlClient.SqlConnection)">
+            <summary>
+            Constructor: gán SqlConnection cho object DBM với SqlConnection được truyền vào
+            </summary>
+            <param name="SqlConn"></param>
+        </member>
+        <member name="M:BSS.DBM.ExecStore(System.String)">
+            <summary>
+            Hàm tĩnh, cho phép execute store storeName trong DB mà không cần khởi tạo object DBM, dùng default ConnectionString (được set trong key AppSettingsDBKey = "MSSQL" ở file app.config hoặc web.config)
+            </summary>
+            <param name="storeName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.DBM.ExecStore(System.String,System.String)">
+            <summary>
+            Hàm tĩnh, cho phép execute store storeName trong DB mà không cần khởi tạo object DBM, với connection string strConnect được truyền vào
+            </summary>
+            <param name="strConnect"></param>
+            <param name="storeName"></param>
+        </member>
+        <member name="M:BSS.DBM.ExecStore(System.String,System.String,System.Collections.Hashtable)">
+            <summary>
+            Hàm tĩnh, cho phép execute store storeName với các tham số trong htParams, với connection string strConnect được truyền vào
+            </summary>
+            <param name="strConnect"></param>
+            <param name="storeName"></param>
+        </member>
+        <member name="M:BSS.DBM.ExecStore``1(System.String,``0)">
+            <summary>
+            Hàm tĩnh, cho phép execute store storeName trong DB, với tham số parameters mà không cần khởi tạo object DBM, dùng default ConnectionString (được set trong key AppSettingsDBKey = "MSSQL" ở file app.config hoặc web.config)
+            </summary>
+            <param name="storeName"></param>
+            <param name="parameters"></param>
+        </member>
+        <member name="M:BSS.DBM.ExecStore``1(System.String,System.String,``0)">
+            <summary>
+            Hàm tĩnh, cho phép execute store storeName trong DB, với tham số parameters mà không cần khởi tạo object DBM, với connection string strConnect được truyền vào
+            </summary>
+            <param name="strConnect"></param>
+            <param name="storeName"></param>
+            <param name="parameters"></param>
+        </member>
+        <member name="M:BSS.DBM.ExecStore(System.String,System.String@)">
+            <summary>
+            ExecStore and return one output with type of string
+            </summary>
+            <param name="storeName"></param>
+            <param name="v"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.DBM.ExecStore(System.String,System.Int32@)">
+            <summary>
+            ExecStore and return one output with type of int
+            </summary>
+            <param name="storeName"></param>
+            <param name="v"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.DBM.ExecStore(System.String,System.Int64@)">
+            <summary>
+            ExecStore and return one output with type of long
+            </summary>
+            <param name="storeName"></param>
+            <param name="v"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.DBM.ExecStore(System.String,System.Boolean@)">
+            <summary>
+            ExecStore and return one output with type of bool
+            </summary>
+            <param name="storeName"></param>
+            <param name="v"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.DBM.ExecStore(System.String,System.Data.DataTable@)">
+            <summary>
+            ExecStore and return one output with type of DataTable
+            </summary>
+            <param name="storeName"></param>
+            <param name="dt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.DBM.ExecStore(System.String,System.Object@)">
+            <summary>
+            ExecStore and return one output with type of object
+            </summary>
+            <param name="storeName"></param>
+            <param name="v"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.DBM.ExecStore(System.String,System.String,System.Guid@)">
+            <summary>
+            ExecStore with storeName, params, out param outVarName and return one output with type of Guid
+            </summary>
+            <param name="storeName"></param>
+            <param name="outVarName"></param>
+            <param name="v"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.DBM.ExecStore(System.String,System.String,System.String@)">
+            <summary>
+            ExecStore with storeName, params, out param outVarName and return one output with type of string
+            </summary>
+            <param name="storeName"></param>
+            <param name="outVarName"></param>
+            <param name="v"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.DBM.ExecStore(System.String,System.String,System.Int32@)">
+            <summary>
+            ExecStore with storeName, params, out param outVarName and return one output with type of int
+            </summary>
+            <param name="storeName"></param>
+            <param name="outVarName"></param>
+            <param name="v"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.DBM.ExecStore(System.String,System.String,System.Int64@)">
+            <summary>
+            ExecStore with storeName, params, out param outVarName and return one output with type of long
+            </summary>
+            <param name="storeName"></param>
+            <param name="outVarName"></param>
+            <param name="v"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.DBM.ExecStore(System.String,System.String,System.Boolean@)">
+            <summary>
+            ExecStore with storeName, params, out param outVarName and return one output with type of bool
+            </summary>
+            <param name="storeName"></param>
+            <param name="outVarName"></param>
+            <param name="v"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.DBM.ExecStore(System.String,System.String,System.Object@)">
+            <summary>
+            ExecStore with storeName, params, out param outVarName and return one output with type of object
+            </summary>
+            <param name="storeName"></param>
+            <param name="outVarName"></param>
+            <param name="v"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.DBM.ExecStore(System.String,System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.Object}@)">
+            <summary>
+            ExecStore with storeName, params, out param outVarName and return one output with type of object
+            </summary>
+            <param name="storeName"></param>
+            <param name="outVarNames"></param>
+            <param name="vs"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.DBM.BulkCopy(System.Data.DataTable,System.String)">
+            <summary>
+            Ví dụ sử dụng:
+            
+            msg = GetInvoiceDetailsDataTable(ChangeTypeID, out DataTable dtInvoiceDetails);
+            if (msg.Length > 0) return msg;
+            
+            msg = DBM.BulkCopy(dbm, dtInvoiceDetails, "dbo.InvoiceDetails");
+            if (msg.Length > 0) return msg;
+            </summary>
+            <param name="dt">Dảng dữ liệu DataTable</param>
+            <param name="DestinationTableName">Tên bảng cần insert trong Database</param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.DBM.ExecStore">
+            <summary> Hàm thực thi các store sau khi chạy lệnh SetStoreNameAndParams để điền các tham số đầu vào và tên store cần thực thi
+            <para>BSS.DBM dbm = new BSS.DBM();</para>
+            <para>string err = dbm.SetStoreNameAndParams("dbo.sp_LogActivity_Insert", new { LogContent = "Enter log", UserID = 20, ObjectGUID = Guid.NewGuid(), IP = "10.3.4.43" }).ExecStore();</para>
+            </summary>
+            <returns>Giá trị trả về rỗng là thành công, còn khác rỗng là lỗi</returns>
+        </member>
+        <member name="M:BSS.DBM.ExecStore(System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.Object}@)">
+            <summary>
+            Hàm thực thi các store sau khi chạy lệnh SetStoreNameAndParams để điền các tham số đầu vào và tên store cần thực thi và có giá trị trả ra 
+            </summary>
+            <param name="outVarNames">Tên biến quy định là biến output trong store</param>
+            <param name="outValues">Biến sẽ được gán giá trị sau khi chạy</param>
+            <returns>Giá trị trả về rỗng là thành công, còn khác rỗng là lỗi</returns>
+        </member>
+        <member name="M:BSS.DBM.ExecStore(System.Guid@)">
+            <summary>
+            Hàm thực thi các store sau khi chạy lệnh SetStoreNameAndParams để điền các tham số đầu vào và tên store cần thực thi và có giá trị trả ra
+            BSS.DBM dbm = new BSS.DBM();
+            DataTable dt = null;
+            string err = obj.SetStoreNameAndParams("dbo.sp_LogActivity_SelectOne", new { ID = 1 });
+            err = ExecStore(out dt);
+            </summary>
+            <param name="v">guid chứa giá trị sau khi chạy</param>
+            <returns>Giá trị trả về rỗng là thành công, còn khác rỗng là lỗi</returns>
+        </member>
+        <member name="M:BSS.DBM.ExecStore(System.Boolean@)">
+            <summary>
+            Hàm thực thi các store sau khi chạy lệnh SetStoreNameAndParams để điền các tham số đầu vào và tên store cần thực thi và có giá trị trả ra
+            BSS.DBM dbm = new BSS.DBM();
+            DataTable dt = null;
+            string err = obj.SetStoreNameAndParams("dbo.sp_LogActivity_SelectOne", new { ID = 1 });
+            err = ExecStore(out dt);
+            </summary>
+            <param name="v">bool chứa giá trị sau khi chạy</param>
+            <returns>Giá trị trả về rỗng là thành công, còn khác rỗng là lỗi</returns>
+        </member>
+        <member name="M:BSS.DBM.ExecStore(System.Int64@)">
+            <summary>
+            Hàm thực thi các store sau khi chạy lệnh SetStoreNameAndParams để điền các tham số đầu vào và tên store cần thực thi và có giá trị trả ra
+            BSS.DBM dbm = new BSS.DBM();
+            DataTable dt = null;
+            string err = obj.SetStoreNameAndParams("dbo.sp_LogActivity_SelectOne", new { ID = 1 });
+            err = ExecStore(out dt);
+            </summary>
+            <param name="v">số chứa giá trị sau khi chạy</param>
+            <returns>Giá trị trả về rỗng là thành công, còn khác rỗng là lỗi</returns>
+        </member>
+        <member name="M:BSS.DBM.ExecStore(System.Int32@)">
+            <summary>
+            Hàm thực thi các store sau khi chạy lệnh SetStoreNameAndParams để điền các tham số đầu vào và tên store cần thực thi và có giá trị trả ra
+            BSS.DBM dbm = new BSS.DBM();
+            DataTable dt = null;
+            string err = obj.SetStoreNameAndParams("dbo.sp_LogActivity_SelectOne", new { ID = 1 });
+            err = ExecStore(out dt);
+            </summary>
+            <param name="v">số chứa giá trị sau khi chạy</param>
+            <returns>Giá trị trả về rỗng là thành công, còn khác rỗng là lỗi</returns>
+        </member>
+        <member name="M:BSS.DBM.ExecStore(System.String@)">
+            <summary>
+            Hàm thực thi các store sau khi chạy lệnh SetStoreNameAndParams để điền các tham số đầu vào và tên store cần thực thi và có giá trị trả ra
+            BSS.DBM dbm = new BSS.DBM();
+            DataTable dt = null;
+            string err = obj.SetStoreNameAndParams("dbo.sp_LogActivity_SelectOne", new { ID = 1 });
+            err = ExecStore(out dt);
+            </summary>
+            <param name="v">string chứa giá trị sau khi chạy</param>
+            <returns>Giá trị trả về rỗng là thành công, còn khác rỗng là lỗi</returns>
+        </member>
+        <member name="M:BSS.DBM.ExecStore(System.Object@)">
+            <summary>
+            Hàm thực thi các store sau khi chạy lệnh SetStoreNameAndParams để điền các tham số đầu vào và tên store cần thực thi và có giá trị trả ra
+            BSS.DBM dbm = new BSS.DBM();
+            DataTable dt = null;
+            string err = obj.SetStoreNameAndParams("dbo.sp_LogActivity_SelectOne", new { ID = 1 });
+            err = ExecStore(out dt);
+            </summary>
+            <param name="outValue">object chứa giá trị sau khi chạy</param>
+            <returns>Giá trị trả về rỗng là thành công, còn khác rỗng là lỗi</returns>
+        </member>
+        <member name="M:BSS.DBM.ExecStore(System.Data.DataTable@)">
+            <summary>
+            Hàm thực thi các store sau khi chạy lệnh SetStoreNameAndParams để điền các tham số đầu vào và tên store cần thực thi và có giá trị trả ra
+            BSS.DBM dbm = new BSS.DBM();
+            DataTable dt = null;
+            string err = obj.SetStoreNameAndParams("dbo.sp_LogActivity_SelectOne", new { ID = 1 });
+            err = ExecStore(out dt);
+            </summary>
+            <param name="dt">Table chứa giá trị sau khi chạy</param>
+            <returns>Giá trị trả về rỗng là thành công, còn khác rỗng là lỗi</returns>
+        </member>
+        <member name="M:BSS.DBM.SetStoreNameAndParams``1(System.String,``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="storeName"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.DBM.ClearParams">
+            <summary>
+            
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.DBM.AddParams``1(``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.DBM.AddParams``1(System.String,System.Collections.Hashtable@,``0)">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="strConnect"></param>
+            <param name="htParams"></param>
+            <param name="parameters"></param>
+        </member>
+        <member name="M:BSS.DBM.OpenConnection">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BSS.DBM.CloseConnection">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BSS.DBM.BeginTransac">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BSS.DBM.CommitTransac">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BSS.DBM.RollBackTransac">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:BSS.DBM.Dispose">
+            <summary>
+            Dispose object DBM
+            </summary>
+        </member>
+        <member name="M:BSS.DBM.ExecQueryString">
+            <summary>
+            Thực thi bằng câu lênh trực tiếp
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.DBM.ExecQueryString(System.String)">
+            <summary>
+            Thực thi bằng câu lênh trực tiếp
+            </summary>       
+            <param name="_QueryString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.DBM.ExecQueryString(System.Data.Common.DbConnection,System.Data.Common.DbTransaction,System.String)">
+            <summary>
+            Thực thi bằng câu lênh trực tiếp
+            </summary>
+            <param name="conn"></param>
+            <param name="transac"></param>
+            <param name="_QueryString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.DBM.GetOne``1(``0@)">
+            <summary>
+            Hàm để lấy một đối tượng sau khi chạy lệnh SetStoreNameAndParams để điền các tham số đầu vào và tên store cần thực thi và có giá trị trả ra
+            BSS.DBM dbm = new BSS.DBM();
+            T obj = null;
+            string err = obj.SetStoreNameAndParams("dbo.sp_LogActivity_SelectOne", new { ID = 1 }).ExecStore(out obj);
+            </summary>
+            <param name="oneItem">Đối tượng chứa giá trị sau khi chạy</param>
+            <returns>Giá trị trả về rỗng là thành công, còn khác rỗng là lỗi</returns>
+        </member>
+        <member name="M:BSS.DBM.GetList``1(System.Collections.Generic.List{``0}@)">
+            <summary>
+            Hàm để lấy danh sách đối tượng sau khi chạy lệnh SetStoreNameAndParams để điền các tham số đầu vào và tên store cần thực thi và có giá trị trả ra
+            BSS.DBM dbm = new BSS.DBM();
+            List lt = null;
+            string err = obj.SetStoreNameAndParams("dbo.sp_LogActivity_SelectOne", new { ID = 1 }).ExecStore(out lt);
+            </summary>
+            <param name="list">List chứa giá trị sau khi chạy</param>
+            <returns>Giá trị trả về rỗng là thành công, còn khác rỗng là lỗi</returns>
+        </member>
+        <member name="M:BSS.DBM.GetOne``2(System.String,System.String,``0,``1@)">
+            <summary>
+            Hàm tĩnh để lấy 1 đối tượng
+            LogActivity objLogActivity = null;
+            DataTable dt = null;
+            string err = DBM.GetOne("dbo.sp_LogActivity_SelectOne", new { ID = 5 }, out objLogActivity);
+            </summary>
+            <typeparam name="T">Kiểu đối tượng chứa biến</typeparam>
+            <typeparam name="TL">Kiểu đối tượng cần lấy</typeparam>
+            <param name="strConnect"></param>
+            <param name="storeName">Tên store</param>
+            <param name="parameters">Đối tượng chứa biến chuyền vào</param>
+            <param name="oneItem">Đối tượng trả ra</param>
+            <returns>Giá trị trả về rỗng là thành công, còn khác rỗng là lỗi</returns>
+        </member>
+        <member name="M:BSS.DBM.GetList``2(System.String,System.String,``0,System.Collections.Generic.List{``1}@)">
+            <summary> 
+            Hàm tĩnh để lấy danh sách đối tượng
+            List clsLogActivity objListLogActivity = null;
+            DataTable dt = null;
+            string err = DBM.GetList("dbo.sp_LogActivity_SelectOne", new { ID = 5 }, out objListLogActivity); 
+            </summary>
+            <typeparam name="T">Kiểu đối tượng chứa biến</typeparam>
+            <typeparam name="TL">Kiểu đối tượng cần lấy</typeparam>
+            <param name="strConnect"></param>
+            <param name="storeName">Tên store</param>
+            <param name="parameters">Đối tượng chứa biến chuyền vào</param>
+            <param name="list">Đối tượng trả ra</param>
+            <returns>Giá trị trả về rỗng là thành công, còn khác rỗng là lỗi</returns>
+        </member>
+        <member name="M:BSS.DifferenceComparator.GetDifferences(System.Object,System.Object,System.String,System.String,System.Boolean)">
+            <summary>
+            So sánh sự khác nhau giữa 2 đối tượng dựa vào 1 tập các thuộc tính được chỉ định<para/>
+            Ví dụ: return BSS.DifferenceComparator.GetDifferences(o1, o2);<para/>
+            Ví dụ: return BSS.DifferenceComparator.GetDifferences(o1, o2, "Address|Mobile|Telephone|CompanyTelephone|Email");<para/>
+            Ví dụ: return BSS.DifferenceComparator.GetDifferences(o1, o2, "Address|Mobile@ -,;@SĐT DĐ|Telephone@ -,;@SĐT NR|CompanyTelephone@ -,;@SĐT CQ|Email");<para/>
+            Cú pháp "PropertyName1@DisplayText1@SplitString1|PropertyName2@DisplayText2@SplitString2|PropertyName3@DisplayText3@SplitString3"<para/>
+            Trong đó propertieNames là danh sách các Property có trong 2 object cần so sánh.
+            DisplayText là nội dung hiển thị nếu có sự khác biệt. Nếu DisplayText để rỗng thì DisplayText sẽ được set bằng PropertyName ví dụ nếu truyền vào "Mobile@@," thì PropertyName, DisplayText là "Mobile", SplitChar là ","
+            SplitString là các ký tự để phân tách (nếu có)<para/>
+            Ghi chú: DisplayText, SplitString có thể là rỗng, khi đó sẽ lấy từ DifferenceComparatorAttribute của Property (nếu có)
+            Nếu propertieNames="" hoặc không có, sẽ lấy toàn bộ propertieNames của o1
+            </summary>
+            <param name="o1"></param>
+            <param name="o2"></param>
+            <param name="propertieNames">Là danh sách các properties cần so sánh</param>
+            <param name="actionText"></param>
+            <param name="boldValue"></param> 
+            <returns></returns>
+        </member>
+        <member name="T:BSS.EnterpriseInfo">
+            <summary>
+            Class lấy thông tin doanh nghiệp từ https://dichvuthongtin.dkkd.gov.vn/inf/default.aspx hoặc Vacom.vn
+            Hướng dẫn sử dụng:
+            EnterpriseInfo ei;
+            EnterpriseInfo.GetEnterpriseInfo("0101360697", out ei);
+            </summary>
+        </member>
+        <member name="M:BSS.EnterpriseInfo.GetEnterpriseInfo(System.String,BSS.EnterpriseInfo@)">
+            <summary>
+            Hàm lấy TTDN: 
+            1. Nếu tồn tại trong DB và Lastupdate chưa vượt ngưỡng (7 ngày) => lấy thông tin trong DB
+            2. Ngược lại tra cứu thông tin từ các Website theo thứ tự ưu tiên: vinabiz.org, dichvuthongtin.dkkd.gov.vn
+            - Nếu đã tồn tại trong DB thì Set timeout = 5s => trả về thông tin từ WebSite nếu lấy thành công, ngược lại lấy trong DB
+            - Ko tồn tại trong DB Set timeout = 15s, trả về thông tin từ WebSite nếu lấy thành công, ngược lại thông báo lỗi NSD tự điền thông tin
+            </summary>
+            <param name="MST"></param>
+            <param name="ei"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.EnterpriseInfo.GetToken(System.Boolean,System.String@)">
+            <summary>
+            Hàm mấy token mỗi lần vào trang
+            </summary>
+            <param name="isExisted"></param>
+            <param name="token">Token lấy được từ trang</param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.EnterpriseInfo.GetStatusName(System.String)">
+            <summary>
+            Trang sẽ trả về các mã ACT, TER, SUS, REV. Hàm này sẽ convert các mã về tên Trạng thái
+            </summary>
+            <param name="status">Mã trạng thái</param>
+            <returns></returns>
+        </member>
+        <member name="T:BSS.ListEnterpriseInfo">
+            <summary>
+            Class này tạo để khớp với cấu trúc JSON trang trả về từ https://dichvuthongtin.dkkd.gov.vn/inf/default.aspx
+            </summary>
+        </member>
+        <member name="T:BSS.TFormatter">
+            <summary>
+            Con trỏ hàm format
+            </summary>
+            <param name="o">Giá trị cần format</param>
+            <returns>Giá trị sau khi format</returns>
+        </member>
+        <member name="T:BSS.TSpecialFun">
+            <summary>
+            Con trỏ hàm kiểm tra các chức năng đặc biệt (Các chức năng hiển thị không chỉ dựa vào trạng thái + quyền)
+            </summary>
+            <param name="fId"></param>
+            <param name="roleId"></param>
+            <param name="param">danh sách tham số truyền qua con trỏ hàm</param>
+            <returns>True nếu có hiển thị ngược lại False</returns>
+        </member>
+        <member name="T:BSS.TColorClass">
+            <summary>
+            Con trỏ hàm hỗ trợ bôi màu
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:BSS.GridGenerator.dtRoleStatusFunctionTableView">
+            <summary>
+            Bảng chứa toàn bộ thông tin Chức năng tương ứng với: Quyền, trạng thái, bảng gg
+            </summary>
+        </member>
+        <member name="P:BSS.GridGenerator.dtColumnsTableView">
+            <summary>
+            Bảng chứa toàn bộ danh sách cột theo bảng gg
+            </summary>
+        </member>
+        <member name="P:BSS.GridGenerator.FileNameConfig">
+            <summary>
+            Đường dẫn file config
+            </summary>
+        </member>
+        <member name="P:BSS.GridGenerator.MD5Config">
+            <summary>
+            MD5 file config
+            </summary>
+        </member>
+        <member name="F:BSS.GridGenerator.formatters">
+            <summary>
+            Danh sách các con trỏ hàm format định nghĩa
+            </summary>
+        </member>
+        <member name="F:BSS.GridGenerator.specialFuns">
+            <summary>
+            Danh sách các con trỏ hàm hỗ trợ bôi màu
+            </summary>
+        </member>
+        <member name="F:BSS.GridGenerator.colorClasss">
+            <summary>
+            Danh sách các con trỏ bôi màu
+            </summary>
+        </member>
+        <member name="M:BSS.GridGenerator.SetParameters(System.String,System.String,System.Boolean)">
+            <summary>
+            SetParameters
+            </summary>
+            <param name="fileNameConfig"></param>
+            <param name="md5Config"></param>
+            <param name="isDebug"></param>
+        </member>
+        <member name="M:BSS.GridGenerator.AddFormatter(System.String,BSS.TFormatter)">
+            <summary>
+            Thêm format vào danh sách
+            </summary>
+            <param name="valueType"></param>
+            <param name="formatter"></param>
+        </member>
+        <member name="M:BSS.GridGenerator.GetFormatter(System.String)">
+            <summary>
+            Lấy ra format từ danh sách
+            </summary>
+            <param name="valueType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.GridGenerator.AddSpecialFun(System.String,BSS.TSpecialFun)">
+            <summary>
+            Thêm hàm kiểm tra chức năng vào danh sách
+            </summary>
+            <param name="valueType"></param>
+            <param name="specialFun"></param>
+        </member>
+        <member name="M:BSS.GridGenerator.GetSpecialFun(System.String)">
+            <summary>
+            Lấy ra hàm kiểm tra chức năng từ danh sách
+            </summary>
+            <param name="valueType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.GridGenerator.AddColorClass(System.Int32,BSS.TColorClass)">
+            <summary>
+            Thêm hàm hỗ trợ bôi màu
+            </summary>
+            <param name="tableViewId"></param>
+            <param name="colorClass"></param>
+        </member>
+        <member name="M:BSS.GridGenerator.GetColorClass(System.Int32)">
+            <summary>
+            Lấy ra hàm hỗ trợ bôi màu
+            </summary>
+            <param name="tableViewId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.GridGenerator.ChangeTableWork">
+            <summary>
+            Đổi giá trị bảng
+            </summary>
+        </member>
+        <member name="M:BSS.GridGenerator.IsValidInit">
+            <summary>
+            Hàm kiểm tra Validate GG
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.GridGenerator.GetGrid``1(System.Collections.Generic.IList{``0},System.Int32,System.Int32,System.Int32,System.String,System.Int32,System.String,System.Int32,System.String[],BSS.XSSDefenseType)">
+            <summary>
+            Tạo gg theo kiểu 3: Truyền vào 1 IEnumerable
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.GridGenerator.GetGrid(System.Data.DataTable,System.Int32,System.Int32,System.Int32,System.String,System.Int32,System.String,System.Int32,System.String[],BSS.XSSDefenseType)">
+            <summary>
+            Tạo gg theo kiểu 2: Truyền vào 1 bảng
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.GridGenerator.GetGrid``1(``0,System.Int32,System.Int32,System.Int32,System.String,System.Int32,System.String,System.Int32,System.String[],BSS.XSSDefenseType)">
+            <summary>
+            Tạo gg theo kiểu 1: Truyền vào danh sách param thực thi store, id bảng gg
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.GridGenerator.GetDataTable``1(``0,System.Int32,System.Data.DataTable@)">
+            <summary>
+            Hàm đọc dữ liệu bảng gg theo store
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="parameters"></param>
+            <param name="tableViewId"></param>
+            <param name="dt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.GridGenerator.GenerateGrid(System.Data.DataTable,System.Int32,System.Int32,System.Int32,System.Int32,System.String,System.String,System.Int32,System.String[],BSS.XSSDefenseType)">
+            <summary>
+            Hàm tạo gg
+            </summary>
+            <param name="dt"></param>
+            <param name="tableViewId"></param>
+            <param name="roleId"></param>
+            <param name="pageSize"></param>
+            <param name="currentPage"></param>
+            <param name="sortCol"></param>
+            <param name="htmlHeader">Đoạn html header nếu có thay đổi header không dùng tự động tạo của gg</param>
+            <param name="totalRow_Input"></param>
+            <param name="ignoreColName">Danh sách các cột bỏ qua không tạo</param>
+            <param name="defenseType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.GridGenerator.GenerateGridPagination(System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Tạo phân trang
+            </summary>
+            <param name="tableViewId"></param>
+            <param name="pageSize"></param>
+            <param name="totalRow"></param>
+            <param name="header"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.GridGenerator.GenerateGridHeader(System.Data.DataRow,System.Int32,System.String)">
+            <summary>
+            Hàm tạo header
+            </summary>
+            <param name="dataRow"></param>
+            <param name="tableViewId"></param>
+            <param name="sortCol"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.GridGenerator.GetGridFunction(System.Object,System.Object,System.Object,System.Data.DataRow,System.Boolean)">
+            <summary>
+            Hàm tạo chức năng
+            </summary>
+            <param name="roleId">Id quyền</param>
+            <param name="statusId">Id trạng thái</param>
+            <param name="tableViewId">Id bẳng hiển thị</param>
+            <param name="drData"></param>
+            <param name="isChildForm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.GridGenerator.DoGenerateFunction(System.Data.DataRow[],System.Data.DataRow,System.Boolean,System.Int32)">
+            <summary>
+            Hàm góp các chức năng thành đoạn html
+            </summary>
+            <param name="arrRowFunction">Mảng chức các chức năng</param>
+            <param name="drData"></param>
+            <param name="isChildForm"></param>
+            <param name="roleId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.GridGenerator.GenerateFunction(System.Data.DataRow,System.Boolean)">
+            <summary>
+            Hàm tạo html theo từng chức năng
+            </summary>
+            <param name="rowFunction">Dòng chức năng</param>
+            <param name="isChildForm"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.GridGenerator.DoReplaceParameter(System.String,System.Data.DataRow)">
+            <summary>
+            Hàm ghi đè các tham số truyền vào hàm chức năng dưới client
+            </summary>
+            <param name="htmlFunctions"></param>
+            <param name="dr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.GridGenerator.SortingAndPagingGrid(System.Data.DataTable,System.Int32,System.Int32,System.String)">
+            <summary>
+            Hàm sắp xếp, phân trang
+            </summary>
+            <param name="dt"></param>
+            <param name="pageSize"></param>
+            <param name="currentPage"></param>
+            <param name="sortCol"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BSS.Log">
+            <summary>
+            BSS.Log có 3 loại log LogActivity, LogHistory, LogError.
+            LogActivity dùng khi muốn log các action thuộc dạng view(user click tab này, user click label/control kia...). 
+            Cái này thường dùng để đo lường "sức sống" của hệ thống: xem User có sử dụng hệ thống nhiều hay ít, chức năng, trang web, control nào được dùng nhiều/ít, User có online hay không(theo Last Activity)...
+            
+            LogHistory phục vụ việc Ghi log đầy đủ: Ghi log các Chức năng (CN) do User thực hiện: bao gồm Thêm, Sửa, Xoá (Trừ CN Xem. Nếu là CN Xem nhạy cảm thì mới cần ghi log), Cấu hình, Phân quyền... 
+            Các thao tác nhạy cảm khác của User nếu có, như request, truy cập... cũng cần phải ghi log. Thông tin ghi log bao gồm: Ngày giờ, Tài khoản, IP, hành động trên các bản ghi, nội dung.
+            
+            LogError: ghi lại log khi có lỗi của User gây ra hoặc lỗi Exception của hệ thống
+            </summary>
+        </member>
+        <member name="M:BSS.Log.WriteHistoryLog(BSS.DBM,System.String,System.Guid,System.Int32,System.String,System.Int32)">
+            <summary>
+            Ghi log lịch sử của 1 Object theo ObjectGUID 
+            </summary>
+            <param name="dbm"></param>
+            <param name="LogContent"></param>
+            <param name="ObjectGUID"></param>
+            <param name="FuncId"></param>
+            <param name="UserID"></param>
+            <param name="IP"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.Log.WriteErrorLog(System.String,System.Int32,System.String,System.String,System.Int32)">
+            <summary> Dùng để ghi log, không cần ghi các biến dùng cho debug
+            <para>Example: Log.WriteErrorLog("Bi loi");</para>
+            </summary>
+            <returns>Giá trị trả về khi có lỗi là nội dung lỗi; khi không có lỗi là id của row trong bảng ứng với lỗi vừa được ghi lại</returns>
+        </member>
+        <member name="M:BSS.Log.WriteErrorLog``1(System.String,``0,System.Int32,System.String,System.String,System.Int32)">
+            <summary> Dùng để ghi log, đồng thời ghi cả các biến cần cho debug
+            <para>
+            Example: Log.WriteErrorLog("Bi loi", new { var1, var2, var3 });
+            Example: cần ghi exception: Log.WriteErrorLog("Bi loi", new { Exception=ex.ToString() });
+            Example: cần ghi exception và biến: Log.WriteErrorLog("Bi loi", new { var1, var2, var3, Exception=ex.ToString() });</para>
+            </summary>
+            <returns>Giá trị trả về khi có lỗi là nội dung lỗi; khi không có lỗi là id của row trong bảng ứng với lỗi vừa được ghi lại</returns>
+        </member>
+        <member name="F:BSS.Log.FirstQuotes">
+            <summary> Trả về thông báo lỗi
+            <para>Example: Log.WriteErrorLog("Bi loi", new { var1, var2, var3, Exception=ex.ToString() }).ToMessage();
+                  Sẽ trả về nội dung "Có lỗi xảy ra. Xin vui lòng thử lại sau hoặc thông báo với quản trị (#130)" </para>
+            <para>Example: Log.WriteErrorLog("Bi loi", new { var1 }).ToMessage("Thông báo lỗi: ");
+                  Sẽ trả về nội dung "Thông báo lỗi: (#130)" </para>
+            </summary>
+        </member>
+        <member name="M:BSS.Log.ProcessError(System.String,System.Web.UI.Page,System.String,System.Int32,System.Boolean,System.String,System.String,System.Int32)">
+            <summary>
+            ProcessError và DoProcessError: Hàm xử lý lỗi trả về sau các lệnh dạng: 
+                msg = DoSomething(Input1, Input2... out Output);
+                ProcessError(msg);
+            Cách gọi tương đương 2 lệnh trên: msg = DoSomething(Input1, Input2... out Output).DoProcessError();
+            Nếu cần ghi thêm các tham số như UserID, IP: msg = DoSomething(Input1, Input2... out Output).DoProcessError(new { UserID, IP });
+            Nếu muốn hiện PU thông báo lỗi: msg = DoSomething(Input1, Input2... out Output).DoProcessError(this);
+            Nếu muốn chống bruteforce: msg = DoSomething(Input1, Input2... out Output).DoProcessError(IP: Request.UserHostAddress);
+            Có thể kết hợp: msg = DoSomething(Input1, Input2... out Output).DoProcessError(new { UserID, IP }, this, IP: Request.UserHostAddress);
+            
+            Có 2 loại lỗi khi thực hiện 1 hàm (như hàm DoSomething ở trên): 
+                E1. Lỗi khi thực hiện các lệnh của chương trình, liên quan tới hệ thống: vd Exception khi query DB, thao tác file/folder, try... catch... 
+                Lỗi loại này chỉ cần thông báo chung chung cho user: "Có lỗi xảy ra. Xin vui lòng thử lại sau hoặc thông báo với quản trị" kèm theo ID log lỗi chi tiết đã được ghi lại trong DB
+                
+                E2. Lỗi do input của user không hợp lệ khi validate: vd SĐT, email không đúng khuôn dạng, không nhập Username, cấp số Hóa đơn trong dải số đã hết số có thể cấp... 
+                Lỗi loại này cần thông báo cho user biết chi tiết lỗi (lỗi do gì, do vi phạm validate nào...)
+                
+            Trong DoSomething, có thể xảy ra 1 trong 2 loại lỗi trên. 
+                - Với loại lỗi E1: trả về lỗi theo dạng if (msg.Length > 0) return msg;
+                - Với loại lỗi E2: trả về lỗi theo dạng return "Nội dung hiển thị cho user ở client".ToMessageForUser();
+            Sau khi gọi DoSomething, nhận về 1 string msg. Gọi Log.ProcessError(msg) để xử lý lỗi này.
+            ProcessError trả về string là nội dung sẽ hiển thị cho user để hàm gọi xử lý tiếp nếu cần (vd có thể gán lblWarning.Text = messageToUser nếu không hiện Popup thông báo lỗi). 
+            Ghi chú: các store SQL cũng áp dụng được, ví dụ:
+               SET @OutMsg = N'[MessageForUser] Dải số đã hết. Bạn không thể cấp số Hoá đơn này'
+               SELECT @OutMsg AS OutMsg
+               RETURN ;
+            </summary>
+            <param name="msg"></param>
+            <param name="page">Là Page hay UserControl để hiển thị nội dung thông báo lỗi dưới client. Null: không cần hiển thị ở client</param>
+            <param name="IP">Là IP của user. Nếu cần chống bruteforce thì truyền IP khác null vào. Nếu lỗi loại E2 (do user gây ra) và IP khác null/rỗng thì add vào BruteForceGuard</param>
+            <param name="width"></param>
+            <param name="IsPartner">Tham số xác định có phải là Partner của Bkav không để áp dụng số lần sai trong luật BruteForce</param>
+            <param name="memberName"></param>
+            <param name="sourceFilePath"></param>
+            <param name="sourceLineNumber"></param>
+        </member>
+        <member name="M:BSS.Log.DoProcessError``1(System.String,``0,System.Web.UI.Page,System.String,System.Int32,System.Boolean,System.String,System.String,System.Int32)">
+            <summary>
+            ProcessError và DoProcessError: Hàm xử lý lỗi trả về sau các lệnh dạng: 
+                msg = DoSomething(Input1, Input2... out Output);
+                ProcessError(msg);
+            Cách gọi tương đương 2 lệnh trên: msg = DoSomething(Input1, Input2... out Output).DoProcessError();
+            Nếu cần ghi thêm các tham số như UserID, IP: msg = DoSomething(Input1, Input2... out Output).DoProcessError(new { UserID, IP });
+            Nếu muốn hiện PU thông báo lỗi: msg = DoSomething(Input1, Input2... out Output).DoProcessError(this);
+            Nếu muốn chống bruteforce: msg = DoSomething(Input1, Input2... out Output).DoProcessError(IP: Request.UserHostAddress);
+            Có thể kết hợp: msg = DoSomething(Input1, Input2... out Output).DoProcessError(new { UserID, IP }, this, IP: Request.UserHostAddress);
+            
+            Có 2 loại lỗi khi thực hiện 1 hàm (như hàm DoSomething ở trên): 
+                E1. Lỗi khi thực hiện các lệnh của chương trình, liên quan tới hệ thống: vd Exception khi query DB, thao tác file/folder, try... catch... Lỗi loại này chỉ cần thông báo chung chung cho user: "Có lỗi xảy ra. Xin vui lòng thử lại sau hoặc thông báo với quản trị" kèm theo ID log lỗi chi tiết đã được ghi lại trong DB
+                E2. Lỗi do input của user không hợp lệ khi validate: vd SĐT, email không đúng khuôn dạng, không nhập Username, cấp số Hóa đơn trong dải số đã hết số có thể cấp... Lỗi loại này cần thông báo cho user biết chi tiết lỗi (lỗi do gì, do vi phạm validate nào...)
+            Trong DoSomething, có thể xảy ra 1 trong 2 loại lỗi trên. 
+                - Với loại lỗi E1: trả về lỗi theo dạng if (msg.Length > 0) return msg;
+                - Với loại lỗi E2: trả về lỗi theo dạng return "Nội dung hiển thị cho user ở client".ToMessageForUser();
+            Sau khi gọi DoSomething, nhận về 1 string msg. Gọi Log.ProcessError(msg) để xử lý lỗi này.
+            ProcessError trả về string là nội dung sẽ hiển thị cho user để hàm gọi xử lý tiếp nếu cần (vd có thể gán lblWarning.Text = messageToUser nếu không hiện Popup thông báo lỗi). 
+            Ghi chú: các store SQL cũng áp dụng được, ví dụ:
+               SET @OutMsg = N'[MessageForUser] Dải số đã hết. Bạn không thể cấp số Hoá đơn này'
+               SELECT @OutMsg AS OutMsg
+               RETURN ;
+            </summary>
+            <param name="msg"></param>
+            <param name="parameters">Các tham số cần ghi log</param>
+            <param name="page">Là Page hay UserControl để hiển thị nội dung thông báo lỗi dưới client. Null: không cần hiển thị ở client</param>
+            <param name="IP">Là IP của user. Nếu cần chống bruteforce thì truyền IP khác null vào. Nếu lỗi loại E2 (do user gây ra) và IP khác null/rỗng thì add vào BruteForceGuard</param>
+            <param name="width"></param>
+            <param name="IsPartner"></param>
+            <param name="memberName"></param>
+            <param name="sourceFilePath"></param>
+            <param name="sourceLineNumber"></param>
+        </member>
+        <member name="M:BSS.Paging.ExecByStore``2(System.String,System.String,``0,System.Collections.Generic.List{``1}@,System.Int32@)">
+            <summary>
+            Thực hiện Phân trang bằng Stored Proceduced
+            </summary>
+            <typeparam name="T">Kiểu dữ liệu tham số đầu vào</typeparam>
+            <param name="storeName">Tên Stored Proceduced</param>
+            <param name="columnObjectPagingID">Tên cột ID của đối tượng phân trang</param>
+            <param name="parameters">Các tham số đầu vào. Các tham số bắt buộc phải có: PageSize - Kích thước trang, CurrentPage - Trang hiện tại </param>
+            <param name="lt">Danh sách đối tượng đã phân trang</param>
+            <param name="total">Tổng số bản ghi</param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.Paging.ExecByStore``1(System.String,System.String,``0,System.Data.DataTable@,System.Int32@)">
+            <summary>
+            Thực hiện Phân trang bằng Stored Proceduced
+            </summary>
+            <typeparam name="T">Kiểu dữ liệu tham số đầu vào</typeparam>
+            <param name="storeName">Tên Stored Proceduced</param>
+            <param name="columnObjectPagingID">Tên cột ID của đối tượng phân trang</param>
+            <param name="parameters">Các tham số đầu vào. Các tham số bắt buộc phải có: PageSize - Kích thước trang, CurrentPage - Trang hiện tại </param>
+            <param name="dt">Bảng dữ liệu đã phân trang</param>
+            <param name="total">Tổng số bản ghi</param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.Paging.Exec``1(System.String,System.String,``0,BSS.Result@)">
+            <summary>
+            Thực hiện Phân trang theo nội dung file SQL
+            </summary>
+            <typeparam name="T">Kiểu dữ liệu tham số đầu vào</typeparam>
+            <param name="sqlInput">Câu lệnh SQL</param>
+            <param name="columnObjectPagingID">Tên cột ID của đối tượng phân trang</param>
+            <param name="parameters">Các tham số đầu vào. Các tham số bắt buộc phải có: PageSize - Kích thước trang, CurrentPage - Trang hiện tại </param>
+            <param name="result">Kết quả trả về</param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.Paging.Exec``2(System.String,System.String,``0,System.Collections.Generic.List{``1}@,System.Int32@)">
+            <summary>
+            Thực hiện Phân trang 
+            </summary>
+            <typeparam name="T">Kiểu dữ liệu tham số đầu vào</typeparam>
+            <param name="sqlInput">Câu lệnh SQL</param>
+            <param name="columnObjectPagingID">Tên cột ID của đối tượng phân trang</param>
+            <param name="parameters">Các tham số đầu vào. Các tham số bắt buộc phải có: PageSize - Kích thước trang, CurrentPage - Trang hiện tại </param>
+            <param name="lt">Danh sách trả về</param>
+            <param name="total">Tổng số đối tượng</param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.Paging.Exec``1(System.String,System.String,``0,System.Data.DataTable@,System.Int32@)">
+            <summary>
+            Thực hiện Phân trang 
+            </summary>
+            <typeparam name="T">Kiểu dữ liệu tham số đầu vào</typeparam>
+            <param name="sqlInput">Câu lệnh SQL</param>
+            <param name="columnObjectPagingID">Tên cột ID của đối tượng phân trang</param>
+            <param name="parameters">Các tham số đầu vào. Các tham số bắt buộc phải có: PageSize - Kích thước trang, CurrentPage - Trang hiện tại </param>
+            <param name="dt">Bảng dữ liệu đã phân trang</param>
+            <param name="total">Tổng số đối tượng</param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.DataValidator.DataValidator.Validate``1(``0,System.String[])">
+            <summary>
+            Validate các public properties trong object obj
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="obj"></param>
+            <param name="mapProperties">Nếu là rỗng: Validate hết các public properties trong object obj.
+            Nếu khác rỗng: Nếu mapProperties[i] có dạng "MST" thì sẽ KHÔNG validate property MST này
+            Nếu khác rỗng: Nếu mapProperties[i] có dạng "MST|Mã số thuế" thì sẽ CÓ validate property MST và text trong kết quả khi có lỗi sẽ là "Mã số thuế" (thay vì MST)
+            Ví dụ:
+            textBox1.Text = DataValidator.Validate(new { MST = txtData.Text, HoTen = txtData.Text, Mobile = txtData.Text }).ToErrorMessage();
+            textBox1.Text = DataValidator.Validate(new { MST = txtData.Text, HoTen = txtData.Text, Mobile = txtData.Text },"MST").ToErrorMessage();
+            textBox1.Text = DataValidator.Validate(new { MST = txtData.Text, HoTen = txtData.Text, Mobile = txtData.Text },"MST|Mã số thuế").ToErrorMessage();
+            </param>
+            <returns></returns>
+        </member>
+        <member name="P:BSS.QueryStringBuilder.Sql">
+            <summary>
+            Nội dung câu lệnh SQL
+            </summary>
+        </member>
+        <member name="P:BSS.QueryStringBuilder.ScriptsInit">
+            <summary>
+            Thông tin Scripts khởi tạo, chuẩn bị cho câu lệnh SQL 
+            </summary>
+        </member>
+        <member name="P:BSS.QueryStringBuilder.Select">
+            <summary>
+            Nội dung mệnh đề Select
+            </summary>
+        </member>
+        <member name="P:BSS.QueryStringBuilder.From">
+            <summary>
+            Nội dung mệnh đề From
+            </summary>
+        </member>
+        <member name="P:BSS.QueryStringBuilder.Where">
+            <summary>
+            Nội dung mệnh đề Where
+            </summary>
+        </member>
+        <member name="P:BSS.QueryStringBuilder.OrderBy">
+            <summary>
+            Nội dung mệnh đề Order By
+            </summary>
+        </member>
+        <member name="M:BSS.QueryStringBuilder.InitWithStore(System.String)">
+            <summary>
+            Khởi tạo QueryStringBuilder với Store Procedured
+            </summary>
+            <param name="storeName">Tên store</param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.QueryStringBuilder.GetClausesSQL(System.String,System.String@,System.String@,System.String@,System.String@,System.String@)">
+            <summary>
+            Hàm phân tích câu lệnh SQL: trả về nội dung ScriptsInit và các mệnh đề SELECT, FROM, WHERE, ORDER By
+            </summary>
+            <param name="scriptsInit">Scripts khởi tạo, chuẩn bị cho câu lệnh SQL</param>
+            <param name="strSql">Câu lệnh SQL</param>
+            <param name="strSelect">Nội dung mệnh đề SELECT</param>
+            <param name="strFrom">Nội dung mệnh đề FROM</param>
+            <param name="strWhere">Nội dung mệnh đề WHERE</param>
+            <param name="strOrderBy">Nội dung mệnh đề ORDER By</param>
+            <returns></returns>
+        </member>
+        <member name="T:BSS.Result">
+            <summary>
+            <para>Class Result chứa kết quả trả về, dùng cho giao tiếp giữa các hệ thống, giữa Webservice-Client</para>
+            <para>Khi trả về KQ ok, không lỗi: return Result.ResultOk;</para>
+            <para>Khi trả về KQ ok, kèm theo object kết quả: return html.ToResultOk();</para>
+            <para>Khi trả về KQ có lỗi: return Result.GetResultError("object is null");</para>
+            <para>Khi trả về KQ có lỗi, cách 2: return BSS.Log.WriteErrorLog(msg).ToGeneralSystemErrorMessage().ToResultError();</para>
+            <para>Trả về 1 KQ customize: return Result.GetResult(2, url); // Trong đó 2 là Mã tự quy định để trao đổi giữa 2 bên; url là 1 object trả về ứng với Mã</para>
+            <para>Trả về 1 KQ customize, cách 2: return url.ToResult(2); </para>
+            <para>Nếu cần chuyển sang Base64 object: return Result.GetResult(3, myData, true); </para>
+            </summary>
+        </member>
+        <member name="T:BSS.com.bkav.bni.AgentWS">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.#ctor">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetWarningPingNeedSendCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetWarningPingChangeStateOKCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetBackupWorkCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.ProcessBackupCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetWarningBackupNeedSendCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetWarningBackupChangeStateOKCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.InsertWarningLogWithErrorContentCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetListOnHolidayCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.ListViolationWarningAccountsCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.IsOverThresholdPercentErrorCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.TickViolatedAccountsCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetIPAccessCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetObjectViolatedWarningVOCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.UpdateIDsBWCCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.UpdateNumberSendBWCCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetWarningParentByWarningIdCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetWarningWorkByWarningIdCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.ProcessContentWithResultCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.ProcessSensorWithResultCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetWarningSensorIsErrorCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.HelloCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetLastUpdateSensorCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.ProcessContentCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.ProcessContentSampleCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetPingWorkCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetWarningMPWorkCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetWarningMPChangeStateOKCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetWarningMPNeedSendCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetContentWorkCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetMaxLastUpdateCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.UpdatePingOKCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.UpdatePingFailCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetWarningNeedSendCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetWarningContentNeedSendCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetWarningParentCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetUserReceiveWarningCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetPacketWarningCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetPacketWarningContentCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetParentErrorCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.UpdateJustSendWarningCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetAllSuggestWarningCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetWarningChangeStateOKCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetWarningContentChangeStateOKCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.UpdateJustChangeOKCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetWaringParentNeedSendCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetWaringContentParentNeedSendCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetWhiteTimeCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.SendWarningWithSMSAndBWCCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.SendWarningCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetTotalContentBySensorIDCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.UpdateLastPingForSensorCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetSensorNotPingCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetSensorChangeStateOKCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.SwitchDataWarningStatusCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetWarningDataNeedSendCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetWarningDataChangeStateOKCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetContentPauseTooLongCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.UpdatePauseStateCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.UpdatePauseStateBySMSCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.SendInfoByReplySMSCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.UpdateLastPingForToolSendWarningCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.WarningDataUpdateLastPingByIdCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.WarningDataUpdateLastPingCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.CheckToolSendWarningActiveCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.CheckToolActiveCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetUpdateWindowWarningBySensorIdCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.ProcessUpdateWindowWarningCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetUpdateWindowNeedSendCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetUpdateWindowChangeStateOKCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetDriveBySensorIdCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.ProcessDriveWarningCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetDriveWarningNeedSendCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetDriveWarningChangeStateOKCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetResourceWorkCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetResourceWarningNeedSendCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetResourceWarningChangeStateOKCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetDatabaseWarningBySensorIdCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetInfoCheckDbByConfigIdCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetSyncDatabaseNeedSendCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetSyncDatabaseChangeStateOKCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetSyncFolderWarningBySensorIdCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.UpdateAnalyzeLogResultCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetSyncFolderNeedSendCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetSyncFolderChangeStateOKCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetWarningDDosBySensorIDCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetWarningDDosNeedSendCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetWarningDDosChangeStateOKCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetWarningWebAttackBySensorIDCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetWarningWebAttackNeedSendCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetWarningWebAttackChangeStateOKCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetWarningEventLogBySensorIDCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetWarningEventLogNeedSendCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetWarningEventLogChangeStateOKCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetFolderWorkCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.ProcessFolderCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetWarningFolderNeedSendCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetWarningFolderChangeStateOKCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.InsertWarningLogCompleted">
+            <remarks/>
+        </member>
+        <member name="E:BSS.com.bkav.bni.AgentWS.GetGroupAndUserByLogIdCompleted">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningPingNeedSend">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningPingNeedSendAsync">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningPingNeedSendAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningPingChangeStateOK">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningPingChangeStateOKAsync">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningPingChangeStateOKAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetBackupWork(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetBackupWorkAsync(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetBackupWorkAsync(System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.ProcessBackup(System.String,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.ProcessBackupAsync(System.String,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.ProcessBackupAsync(System.String,System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningBackupNeedSend">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningBackupNeedSendAsync">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningBackupNeedSendAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningBackupChangeStateOK">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningBackupChangeStateOKAsync">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningBackupChangeStateOKAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.InsertWarningLogWithErrorContent(System.Int32,System.Int32,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.InsertWarningLogWithErrorContentAsync(System.Int32,System.Int32,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.InsertWarningLogWithErrorContentAsync(System.Int32,System.Int32,System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetListOnHoliday(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetListOnHolidayAsync(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetListOnHolidayAsync(System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.ListViolationWarningAccounts(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.ListViolationWarningAccountsAsync(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.ListViolationWarningAccountsAsync(System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.IsOverThresholdPercentError(System.String,System.Boolean)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.IsOverThresholdPercentErrorAsync(System.String,System.Boolean)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.IsOverThresholdPercentErrorAsync(System.String,System.Boolean,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.TickViolatedAccounts(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.TickViolatedAccountsAsync(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.TickViolatedAccountsAsync(System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetIPAccess">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetIPAccessAsync">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetIPAccessAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetObjectViolatedWarningVO">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetObjectViolatedWarningVOAsync">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetObjectViolatedWarningVOAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.UpdateIDsBWC(System.Int32,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.UpdateIDsBWCAsync(System.Int32,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.UpdateIDsBWCAsync(System.Int32,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.UpdateNumberSendBWC(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.UpdateNumberSendBWCAsync(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.UpdateNumberSendBWCAsync(System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningParentByWarningId(System.String,System.Data.DataTable@)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningParentByWarningIdAsync(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningParentByWarningIdAsync(System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningWorkByWarningId(System.String,System.String,System.Data.DataTable@)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningWorkByWarningIdAsync(System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningWorkByWarningIdAsync(System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.ProcessContentWithResult(System.String,System.Boolean@)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.ProcessContentWithResultAsync(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.ProcessContentWithResultAsync(System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.ProcessSensorWithResult(System.String,System.Boolean@)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.ProcessSensorWithResultAsync(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.ProcessSensorWithResultAsync(System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningSensorIsError(System.Int32,System.Boolean@)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningSensorIsErrorAsync(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningSensorIsErrorAsync(System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.Hello">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.HelloAsync">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.HelloAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetLastUpdateSensor(System.Int32,System.DateTime)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetLastUpdateSensorAsync(System.Int32,System.DateTime)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetLastUpdateSensorAsync(System.Int32,System.DateTime,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.ProcessContent(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.ProcessContentAsync(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.ProcessContentAsync(System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.ProcessContentSample(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.ProcessContentSampleAsync(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.ProcessContentSampleAsync(System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetPingWork(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetPingWorkAsync(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetPingWorkAsync(System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningMPWork(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningMPWorkAsync(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningMPWorkAsync(System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningMPChangeStateOK(System.Data.DataTable@)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningMPChangeStateOKAsync">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningMPChangeStateOKAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningMPNeedSend(System.Data.DataTable@)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningMPNeedSendAsync">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningMPNeedSendAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetContentWork(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetContentWorkAsync(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetContentWorkAsync(System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetMaxLastUpdate(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetMaxLastUpdateAsync(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetMaxLastUpdateAsync(System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.UpdatePingOK(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.UpdatePingOKAsync(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.UpdatePingOKAsync(System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.UpdatePingFail(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.UpdatePingFailAsync(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.UpdatePingFailAsync(System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningNeedSend">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningNeedSendAsync">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningNeedSendAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningContentNeedSend">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningContentNeedSendAsync">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningContentNeedSendAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningParent(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningParentAsync(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningParentAsync(System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetUserReceiveWarning(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetUserReceiveWarningAsync(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetUserReceiveWarningAsync(System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetPacketWarning(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetPacketWarningAsync(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetPacketWarningAsync(System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetPacketWarningContent(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetPacketWarningContentAsync(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetPacketWarningContentAsync(System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetParentError(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetParentErrorAsync(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetParentErrorAsync(System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.UpdateJustSendWarning(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.UpdateJustSendWarningAsync(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.UpdateJustSendWarningAsync(System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetAllSuggestWarning(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetAllSuggestWarningAsync(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetAllSuggestWarningAsync(System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningChangeStateOK">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningChangeStateOKAsync">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningChangeStateOKAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningContentChangeStateOK">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningContentChangeStateOKAsync">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningContentChangeStateOKAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.UpdateJustChangeOK(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.UpdateJustChangeOKAsync(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.UpdateJustChangeOKAsync(System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWaringParentNeedSend(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWaringParentNeedSendAsync(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWaringParentNeedSendAsync(System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWaringContentParentNeedSend(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWaringContentParentNeedSendAsync(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWaringContentParentNeedSendAsync(System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWhiteTime(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWhiteTimeAsync(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWhiteTimeAsync(System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.SendWarningWithSMSAndBWC(System.String,System.String,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.SendWarningWithSMSAndBWCAsync(System.String,System.String,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.SendWarningWithSMSAndBWCAsync(System.String,System.String,System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.SendWarning(System.Int32,System.String,System.String,System.String,System.String,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.SendWarningAsync(System.Int32,System.String,System.String,System.String,System.String,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.SendWarningAsync(System.Int32,System.String,System.String,System.String,System.String,System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetTotalContentBySensorID(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetTotalContentBySensorIDAsync(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetTotalContentBySensorIDAsync(System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.UpdateLastPingForSensor(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.UpdateLastPingForSensorAsync(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.UpdateLastPingForSensorAsync(System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetSensorNotPing">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetSensorNotPingAsync">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetSensorNotPingAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetSensorChangeStateOK">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetSensorChangeStateOKAsync">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetSensorChangeStateOKAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.SwitchDataWarningStatus(System.String,System.Int32,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.SwitchDataWarningStatusAsync(System.String,System.Int32,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.SwitchDataWarningStatusAsync(System.String,System.Int32,System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningDataNeedSend">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningDataNeedSendAsync">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningDataNeedSendAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningDataChangeStateOK">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningDataChangeStateOKAsync">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningDataChangeStateOKAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetContentPauseTooLong">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetContentPauseTooLongAsync">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetContentPauseTooLongAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.UpdatePauseState(System.Int32,System.Int32,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.UpdatePauseStateAsync(System.Int32,System.Int32,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.UpdatePauseStateAsync(System.Int32,System.Int32,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.UpdatePauseStateBySMS(System.Int32,System.String,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.UpdatePauseStateBySMSAsync(System.Int32,System.String,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.UpdatePauseStateBySMSAsync(System.Int32,System.String,System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.SendInfoByReplySMS(System.Int32,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.SendInfoByReplySMSAsync(System.Int32,System.String,System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.SendInfoByReplySMSAsync(System.Int32,System.String,System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.UpdateLastPingForToolSendWarning">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.UpdateLastPingForToolSendWarningAsync">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.UpdateLastPingForToolSendWarningAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.WarningDataUpdateLastPingById(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.WarningDataUpdateLastPingByIdAsync(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.WarningDataUpdateLastPingByIdAsync(System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.WarningDataUpdateLastPing(System.Int32,System.DateTime)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.WarningDataUpdateLastPingAsync(System.Int32,System.DateTime)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.WarningDataUpdateLastPingAsync(System.Int32,System.DateTime,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.CheckToolSendWarningActive">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.CheckToolSendWarningActiveAsync">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.CheckToolSendWarningActiveAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.CheckToolActive(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.CheckToolActiveAsync(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.CheckToolActiveAsync(System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetUpdateWindowWarningBySensorId(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetUpdateWindowWarningBySensorIdAsync(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetUpdateWindowWarningBySensorIdAsync(System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.ProcessUpdateWindowWarning(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.ProcessUpdateWindowWarningAsync(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.ProcessUpdateWindowWarningAsync(System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetUpdateWindowNeedSend">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetUpdateWindowNeedSendAsync">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetUpdateWindowNeedSendAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetUpdateWindowChangeStateOK">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetUpdateWindowChangeStateOKAsync">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetUpdateWindowChangeStateOKAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetDriveBySensorId(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetDriveBySensorIdAsync(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetDriveBySensorIdAsync(System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.ProcessDriveWarning(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.ProcessDriveWarningAsync(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.ProcessDriveWarningAsync(System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetDriveWarningNeedSend">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetDriveWarningNeedSendAsync">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetDriveWarningNeedSendAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetDriveWarningChangeStateOK">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetDriveWarningChangeStateOKAsync">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetDriveWarningChangeStateOKAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetResourceWork(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetResourceWorkAsync(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetResourceWorkAsync(System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetResourceWarningNeedSend">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetResourceWarningNeedSendAsync">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetResourceWarningNeedSendAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetResourceWarningChangeStateOK">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetResourceWarningChangeStateOKAsync">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetResourceWarningChangeStateOKAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetDatabaseWarningBySensorId(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetDatabaseWarningBySensorIdAsync(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetDatabaseWarningBySensorIdAsync(System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetInfoCheckDbByConfigId(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetInfoCheckDbByConfigIdAsync(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetInfoCheckDbByConfigIdAsync(System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetSyncDatabaseNeedSend">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetSyncDatabaseNeedSendAsync">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetSyncDatabaseNeedSendAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetSyncDatabaseChangeStateOK">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetSyncDatabaseChangeStateOKAsync">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetSyncDatabaseChangeStateOKAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetSyncFolderWarningBySensorId(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetSyncFolderWarningBySensorIdAsync(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetSyncFolderWarningBySensorIdAsync(System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.UpdateAnalyzeLogResult(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.UpdateAnalyzeLogResultAsync(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.UpdateAnalyzeLogResultAsync(System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetSyncFolderNeedSend">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetSyncFolderNeedSendAsync">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetSyncFolderNeedSendAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetSyncFolderChangeStateOK">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetSyncFolderChangeStateOKAsync">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetSyncFolderChangeStateOKAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningDDosBySensorID(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningDDosBySensorIDAsync(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningDDosBySensorIDAsync(System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningDDosNeedSend">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningDDosNeedSendAsync">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningDDosNeedSendAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningDDosChangeStateOK">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningDDosChangeStateOKAsync">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningDDosChangeStateOKAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningWebAttackBySensorID(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningWebAttackBySensorIDAsync(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningWebAttackBySensorIDAsync(System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningWebAttackNeedSend">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningWebAttackNeedSendAsync">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningWebAttackNeedSendAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningWebAttackChangeStateOK">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningWebAttackChangeStateOKAsync">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningWebAttackChangeStateOKAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningEventLogBySensorID(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningEventLogBySensorIDAsync(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningEventLogBySensorIDAsync(System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningEventLogNeedSend">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningEventLogNeedSendAsync">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningEventLogNeedSendAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningEventLogChangeStateOK">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningEventLogChangeStateOKAsync">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningEventLogChangeStateOKAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetFolderWork(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetFolderWorkAsync(System.String)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetFolderWorkAsync(System.String,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.ProcessFolder(System.String,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.ProcessFolderAsync(System.String,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.ProcessFolderAsync(System.String,System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningFolderNeedSend">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningFolderNeedSendAsync">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningFolderNeedSendAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningFolderChangeStateOK">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningFolderChangeStateOKAsync">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetWarningFolderChangeStateOKAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.InsertWarningLog(System.Int32,System.Int32,System.Int32,System.String,System.String,System.String,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.InsertWarningLogAsync(System.Int32,System.Int32,System.Int32,System.String,System.String,System.String,System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.InsertWarningLogAsync(System.Int32,System.Int32,System.Int32,System.String,System.String,System.String,System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetGroupAndUserByLogId(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetGroupAndUserByLogIdAsync(System.Int32)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.GetGroupAndUserByLogIdAsync(System.Int32,System.Object)">
+            <remarks/>
+        </member>
+        <member name="M:BSS.com.bkav.bni.AgentWS.CancelAsync(System.Object)">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.ViolationWarningAccountVO">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.ViolationWarningAccountVO.ID">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.ViolationWarningAccountVO.Account">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.ViolationWarningAccountVO.Content">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.ViolationWarningAccountVO.DateTick">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.ViolatedWarningVO">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.ViolatedWarningVO.WarningID">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.ViolatedWarningVO.RepeatWarning">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.ViolatedWarningVO.ThresholdViolation">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.ViolatedWarningVO.ObjectWarning">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.ViolatedWarningVO.GroupBSG">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.ViolatedWarningVO.ViolatedAccs">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.ResultVO">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.ResultVO.Result">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.ResultVO.Message">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningPingNeedSendCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningPingNeedSendCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetWarningPingNeedSendCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningPingChangeStateOKCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningPingChangeStateOKCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetWarningPingChangeStateOKCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetBackupWorkCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetBackupWorkCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetBackupWorkCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.ProcessBackupCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.ProcessBackupCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.ProcessBackupCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningBackupNeedSendCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningBackupNeedSendCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetWarningBackupNeedSendCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningBackupChangeStateOKCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningBackupChangeStateOKCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetWarningBackupChangeStateOKCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.InsertWarningLogWithErrorContentCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.InsertWarningLogWithErrorContentCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.InsertWarningLogWithErrorContentCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetListOnHolidayCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetListOnHolidayCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetListOnHolidayCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.ListViolationWarningAccountsCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.ListViolationWarningAccountsCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.ListViolationWarningAccountsCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.IsOverThresholdPercentErrorCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.IsOverThresholdPercentErrorCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.IsOverThresholdPercentErrorCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.TickViolatedAccountsCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.TickViolatedAccountsCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.TickViolatedAccountsCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetIPAccessCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetIPAccessCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetIPAccessCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetObjectViolatedWarningVOCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetObjectViolatedWarningVOCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetObjectViolatedWarningVOCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.UpdateIDsBWCCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.UpdateIDsBWCCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.UpdateIDsBWCCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.UpdateNumberSendBWCCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.UpdateNumberSendBWCCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.UpdateNumberSendBWCCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningParentByWarningIdCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningParentByWarningIdCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetWarningParentByWarningIdCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetWarningParentByWarningIdCompletedEventArgs.dt">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningWorkByWarningIdCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningWorkByWarningIdCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetWarningWorkByWarningIdCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetWarningWorkByWarningIdCompletedEventArgs.dt">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.ProcessContentWithResultCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.ProcessContentWithResultCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.ProcessContentWithResultCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.ProcessContentWithResultCompletedEventArgs.isError">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.ProcessSensorWithResultCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.ProcessSensorWithResultCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.ProcessSensorWithResultCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.ProcessSensorWithResultCompletedEventArgs.isError">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningSensorIsErrorCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningSensorIsErrorCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetWarningSensorIsErrorCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetWarningSensorIsErrorCompletedEventArgs.isError">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.HelloCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.HelloCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.HelloCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetLastUpdateSensorCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetLastUpdateSensorCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetLastUpdateSensorCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.ProcessContentCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.ProcessContentCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.ProcessContentCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.ProcessContentSampleCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.ProcessContentSampleCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.ProcessContentSampleCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetPingWorkCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetPingWorkCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetPingWorkCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningMPWorkCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningMPWorkCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetWarningMPWorkCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningMPChangeStateOKCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningMPChangeStateOKCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetWarningMPChangeStateOKCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetWarningMPChangeStateOKCompletedEventArgs.dt">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningMPNeedSendCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningMPNeedSendCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetWarningMPNeedSendCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetWarningMPNeedSendCompletedEventArgs.dt">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetContentWorkCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetContentWorkCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetContentWorkCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetMaxLastUpdateCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetMaxLastUpdateCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetMaxLastUpdateCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.UpdatePingOKCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.UpdatePingOKCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.UpdatePingOKCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.UpdatePingFailCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.UpdatePingFailCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.UpdatePingFailCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningNeedSendCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningNeedSendCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetWarningNeedSendCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningContentNeedSendCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningContentNeedSendCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetWarningContentNeedSendCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningParentCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningParentCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetWarningParentCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetUserReceiveWarningCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetUserReceiveWarningCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetUserReceiveWarningCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetPacketWarningCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetPacketWarningCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetPacketWarningCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetPacketWarningContentCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetPacketWarningContentCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetPacketWarningContentCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetParentErrorCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetParentErrorCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetParentErrorCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.UpdateJustSendWarningCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.UpdateJustSendWarningCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.UpdateJustSendWarningCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetAllSuggestWarningCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetAllSuggestWarningCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetAllSuggestWarningCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningChangeStateOKCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningChangeStateOKCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetWarningChangeStateOKCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningContentChangeStateOKCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningContentChangeStateOKCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetWarningContentChangeStateOKCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.UpdateJustChangeOKCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.UpdateJustChangeOKCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.UpdateJustChangeOKCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWaringParentNeedSendCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWaringParentNeedSendCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetWaringParentNeedSendCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWaringContentParentNeedSendCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWaringContentParentNeedSendCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetWaringContentParentNeedSendCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWhiteTimeCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWhiteTimeCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetWhiteTimeCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.SendWarningWithSMSAndBWCCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.SendWarningWithSMSAndBWCCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.SendWarningWithSMSAndBWCCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.SendWarningCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.SendWarningCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.SendWarningCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetTotalContentBySensorIDCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetTotalContentBySensorIDCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetTotalContentBySensorIDCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.UpdateLastPingForSensorCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.UpdateLastPingForSensorCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.UpdateLastPingForSensorCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetSensorNotPingCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetSensorNotPingCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetSensorNotPingCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetSensorChangeStateOKCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetSensorChangeStateOKCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetSensorChangeStateOKCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.SwitchDataWarningStatusCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.SwitchDataWarningStatusCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.SwitchDataWarningStatusCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningDataNeedSendCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningDataNeedSendCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetWarningDataNeedSendCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningDataChangeStateOKCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningDataChangeStateOKCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetWarningDataChangeStateOKCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetContentPauseTooLongCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetContentPauseTooLongCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetContentPauseTooLongCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.UpdatePauseStateCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.UpdatePauseStateCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.UpdatePauseStateCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.UpdatePauseStateBySMSCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.UpdatePauseStateBySMSCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.UpdatePauseStateBySMSCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.SendInfoByReplySMSCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.SendInfoByReplySMSCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.SendInfoByReplySMSCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.UpdateLastPingForToolSendWarningCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.UpdateLastPingForToolSendWarningCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.UpdateLastPingForToolSendWarningCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.WarningDataUpdateLastPingByIdCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.WarningDataUpdateLastPingByIdCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.WarningDataUpdateLastPingByIdCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.WarningDataUpdateLastPingCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.WarningDataUpdateLastPingCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.WarningDataUpdateLastPingCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.CheckToolSendWarningActiveCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.CheckToolSendWarningActiveCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.CheckToolSendWarningActiveCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.CheckToolActiveCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.CheckToolActiveCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.CheckToolActiveCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetUpdateWindowWarningBySensorIdCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetUpdateWindowWarningBySensorIdCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetUpdateWindowWarningBySensorIdCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.ProcessUpdateWindowWarningCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.ProcessUpdateWindowWarningCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.ProcessUpdateWindowWarningCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetUpdateWindowNeedSendCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetUpdateWindowNeedSendCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetUpdateWindowNeedSendCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetUpdateWindowChangeStateOKCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetUpdateWindowChangeStateOKCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetUpdateWindowChangeStateOKCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetDriveBySensorIdCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetDriveBySensorIdCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetDriveBySensorIdCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.ProcessDriveWarningCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.ProcessDriveWarningCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.ProcessDriveWarningCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetDriveWarningNeedSendCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetDriveWarningNeedSendCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetDriveWarningNeedSendCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetDriveWarningChangeStateOKCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetDriveWarningChangeStateOKCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetDriveWarningChangeStateOKCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetResourceWorkCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetResourceWorkCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetResourceWorkCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetResourceWarningNeedSendCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetResourceWarningNeedSendCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetResourceWarningNeedSendCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetResourceWarningChangeStateOKCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetResourceWarningChangeStateOKCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetResourceWarningChangeStateOKCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetDatabaseWarningBySensorIdCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetDatabaseWarningBySensorIdCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetDatabaseWarningBySensorIdCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetInfoCheckDbByConfigIdCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetInfoCheckDbByConfigIdCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetInfoCheckDbByConfigIdCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetSyncDatabaseNeedSendCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetSyncDatabaseNeedSendCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetSyncDatabaseNeedSendCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetSyncDatabaseChangeStateOKCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetSyncDatabaseChangeStateOKCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetSyncDatabaseChangeStateOKCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetSyncFolderWarningBySensorIdCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetSyncFolderWarningBySensorIdCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetSyncFolderWarningBySensorIdCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.UpdateAnalyzeLogResultCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.UpdateAnalyzeLogResultCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.UpdateAnalyzeLogResultCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetSyncFolderNeedSendCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetSyncFolderNeedSendCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetSyncFolderNeedSendCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetSyncFolderChangeStateOKCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetSyncFolderChangeStateOKCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetSyncFolderChangeStateOKCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningDDosBySensorIDCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningDDosBySensorIDCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetWarningDDosBySensorIDCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningDDosNeedSendCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningDDosNeedSendCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetWarningDDosNeedSendCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningDDosChangeStateOKCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningDDosChangeStateOKCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetWarningDDosChangeStateOKCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningWebAttackBySensorIDCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningWebAttackBySensorIDCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetWarningWebAttackBySensorIDCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningWebAttackNeedSendCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningWebAttackNeedSendCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetWarningWebAttackNeedSendCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningWebAttackChangeStateOKCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningWebAttackChangeStateOKCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetWarningWebAttackChangeStateOKCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningEventLogBySensorIDCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningEventLogBySensorIDCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetWarningEventLogBySensorIDCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningEventLogNeedSendCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningEventLogNeedSendCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetWarningEventLogNeedSendCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningEventLogChangeStateOKCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningEventLogChangeStateOKCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetWarningEventLogChangeStateOKCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetFolderWorkCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetFolderWorkCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetFolderWorkCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.ProcessFolderCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.ProcessFolderCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.ProcessFolderCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningFolderNeedSendCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningFolderNeedSendCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetWarningFolderNeedSendCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningFolderChangeStateOKCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetWarningFolderChangeStateOKCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetWarningFolderChangeStateOKCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.InsertWarningLogCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.InsertWarningLogCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.InsertWarningLogCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetGroupAndUserByLogIdCompletedEventHandler">
+            <remarks/>
+        </member>
+        <member name="T:BSS.com.bkav.bni.GetGroupAndUserByLogIdCompletedEventArgs">
+            <remarks/>
+        </member>
+        <member name="P:BSS.com.bkav.bni.GetGroupAndUserByLogIdCompletedEventArgs.Result">
+            <remarks/>
+        </member>
+        <member name="M:BSS.XSSDefense.XSSKiller``1(``0,BSS.XSSDefenseType)">
+            <summary>
+            Chống tấn công xss theo đối tượng (Tự động Encode html nếu thuộc tính của đối tượng là string)
+            Các đối tượng trước khi bind ra giao diện cho người dùng chạy qua hàm này sẽ loại bỏ nguy cơ bị xss.
+            </summary>
+            <param name="obj"></param>
+            <param name="defenseType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BSS.XSSDefense.XSSKiller(System.String,BSS.XSSDefenseType)">
+            <summary>
+            Mã hóa các ký tự html chống tấn công xss
+            </summary>
+            <param name="val"></param>
+            <param name="defenseType"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BSECUS.Webservice.BSECUSWebservice">
+            <summary>
+            Summary description for WSPublicEHoaDon
+            </summary>
+        </member>
+        <member name="T:BMM.Service.SPVService">
+            <summary>
+            Summary description for SPVServiceTest
+            </summary>
+        </member>
+    </members>
+</doc>
